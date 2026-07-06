@@ -1,0 +1,17 @@
+name: build
+on:
+  push:
+    branches: [main]
+jobs:
+  build-push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build and push
+        env:
+          HARBOR_USER: ${{ secrets.HARBOR_USER }}
+          HARBOR_TOKEN: ${{ secrets.HARBOR_TOKEN }}
+        run: |
+          echo "$HARBOR_TOKEN" | docker login harbor.avazel.co.uk -u "$HARBOR_USER" --password-stdin
+          docker build -t harbor.avazel.co.uk/homelab/portfolio:latest .
+          docker push harbor.avazel.co.uk/homelab/portfolio:latest

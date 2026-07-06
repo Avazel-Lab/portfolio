@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Avazel</title>
+  <meta name="description" content="Avazel — personal projects and self-hosted services.">
+  <style>
+    :root {
+      --bg: #f7f7f5;
+      --fg: #1a1a1a;
+      --muted: #6b6b6b;
+      --accent: #3b6ea5;
+      --rule: #e3e3df;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #12141a;
+        --fg: #e8e8e4;
+        --muted: #9a9aa2;
+        --accent: #7fa8d9;
+        --rule: #23262f;
+      }
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      line-height: 1.6;
+    }
+    main {
+      max-width: 40rem;
+      padding: 2rem;
+      text-align: center;
+    }
+    h1 {
+      font-size: clamp(2.5rem, 8vw, 4rem);
+      font-weight: 650;
+      letter-spacing: -0.02em;
+    }
+    h1 span { color: var(--accent); }
+    p.tag {
+      margin-top: 0.75rem;
+      font-size: 1.125rem;
+      color: var(--muted);
+    }
+    hr {
+      border: 0;
+      border-top: 1px solid var(--rule);
+      margin: 2.5rem auto;
+      width: 4rem;
+    }
+    p.note { color: var(--muted); font-size: 0.95rem; }
+    footer {
+      margin-top: 3rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <!-- EDIT ME: this is your public landing page at https://avazel.co.uk -->
+    <h1>Avazel<span>.</span></h1>
+    <p class="tag">Personal projects &amp; self-hosted services.</p>
+    <hr>
+    <p class="note">A proper site is on its way. In the meantime — everything here is
+    built on Kubernetes, delivered by GitOps, and rebuilt from a single command.</p>
+    <footer>k3s · ArgoCD · built &amp; shipped by Gitea Actions → Harbor</footer>
+  </main>
+</body>
+</html>
