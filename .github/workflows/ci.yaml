@@ -1,0 +1,35 @@
+# PR gate — runs on GitHub's hosted runners (no access to Harbor/the cluster, and none needed).
+# Its job is to catch a broken site or Dockerfile BEFORE merge, so the Gitea release build
+# (which mirrors main and pushes to Harbor) only ever sees green commits.
+#
+# Make this a REQUIRED status check on the `main` branch (Settings → Branches → branch
+# protection) so a red build blocks the merge button.
+name: ci
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: index.html exists and is non-empty
+        run: test -s index.html
+      - name: HTML parses and has the basic document structure
+        # Lightweight, dependency-free sanity check (no pedantic HTML5 linter that would
+        # flag valid modern markup): the file must parse and contain <html>…</html>.
+        run: |
+          python3 - <<'PY'
+          import html.parser, sys, pathlib
+          src = pathlib.Path("index.html").read_text(encoding="utf-8")
+          class P(html.parser.HTMLParser):
+              def error(self, message): raise ValueError(message)
+          P().feed(src)
+          low = src.lower()
+          assert "<html" in low and "</html>" in low, "missing <html>…</html>"
+          print("index.html parses OK")
+          PY
+      - name: Docker image builds
+        run: docker build -t portfolio:ci .

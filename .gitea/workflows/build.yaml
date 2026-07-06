@@ -1,17 +1,37 @@
+# Release build — runs in Gitea Actions on the VPS (in-cluster runner can reach Harbor).
+#
+# This repo's source of truth is GitHub (Avazel-Lab/portfolio); Gitea holds a PULL-MIRROR
+# of main. A Gitea pull-mirror sync updates the refs but does NOT fire Actions, so we can't
+# use `on: push` here — instead we POLL on a schedule and build only when main's HEAD isn't
+# already in Harbor (tagged by commit SHA). `workflow_dispatch` allows an immediate manual
+# build from the Gitea UI / API (also the fallback if scheduled triggers don't fire on a
+# mirror repo — a VPS cron can hit the dispatch API on localhost).
 name: build
 on:
-  push:
-    branches: [main]
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch: {}
 jobs:
   build-push:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Build and push
+        with:
+          fetch-depth: 1
+      - name: Build & push to Harbor only if this commit isn't already built
         env:
           HARBOR_USER: ${{ secrets.HARBOR_USER }}
           HARBOR_TOKEN: ${{ secrets.HARBOR_TOKEN }}
         run: |
+          set -euo pipefail
+          SHA="$(git rev-parse --short HEAD)"
+          IMAGE=harbor.avazel.co.uk/homelab/portfolio
           echo "$HARBOR_TOKEN" | docker login harbor.avazel.co.uk -u "$HARBOR_USER" --password-stdin
-          docker build -t harbor.avazel.co.uk/homelab/portfolio:latest .
-          docker push harbor.avazel.co.uk/homelab/portfolio:latest
+          if docker manifest inspect "$IMAGE:$SHA" >/dev/null 2>&1; then
+            echo "$IMAGE:$SHA already in Harbor — nothing to build."
+            exit 0
+          fi
+          echo "Building $IMAGE:$SHA (and :latest)…"
+          docker build -t "$IMAGE:$SHA" -t "$IMAGE:latest" .
+          docker push "$IMAGE:$SHA"
+          docker push "$IMAGE:latest"
