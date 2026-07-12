@@ -13,7 +13,7 @@ read-only pull-mirror of `main` and does the release build.
 edit on a branch → open PR
    └─ GitHub Actions (.github/workflows/ci.yaml) builds + sanity-checks — REQUIRED to merge
 merge to main
-   └─ Gitea pull-mirrors main (every ~10 min)
+   └─ Gitea pull-mirrors main (hourly)
         └─ scheduled Gitea Actions build (.gitea/workflows/build.yaml) → pushes image to Harbor
              └─ Kubernetes pulls harbor.avazel.co.uk/homelab/portfolio:latest
 ```
@@ -29,8 +29,8 @@ owns only the content and the image.
 ## Editing the site
 
 The whole site is `index.html`. Edit it on a branch, open a PR, get the `ci` check green, and
-merge. Within ~10–15 min the mirror syncs and the scheduled build ships the new image. To pick
-it up immediately on the running pod:
+merge. The mirror syncs hourly, then the next scheduled build (every 15 min) ships the new
+image — so allow up to ~1¼ h end to end. To pick it up immediately on the running pod:
 
 ```bash
 kubectl -n portfolio rollout restart deploy portfolio
