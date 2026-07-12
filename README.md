@@ -1,7 +1,8 @@
 # portfolio
 
-The public site at **https://avazel.co.uk** — a static page served by nginx, built and
-deployed automatically.
+The public site at **https://avazel.co.uk** — the Avazel company website (UK infrastructure,
+DevOps & automation consultancy). A single static page served by nginx, built and deployed
+automatically.
 
 ## Source of truth & release flow
 

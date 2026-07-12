@@ -1,77 +1,656 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-GB">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Avazel</title>
-  <meta name="description" content="Avazel — personal projects and self-hosted services.">
+  <title>Avazel — UK Infrastructure, DevOps &amp; Automation Consultancy</title>
+  <meta name="description" content="Avazel is a UK-based infrastructure, DevOps and automation consultancy providing infrastructure automation, infrastructure as code (Terraform, Ansible), CI/CD and platform engineering, and technical documentation. Remote and hybrid engagements from Hampshire, UK.">
+  <link rel="canonical" href="https://avazel.co.uk/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Avazel — UK Infrastructure, DevOps &amp; Automation Consultancy">
+  <meta property="og:description" content="UK-based infrastructure, DevOps and automation consultancy helping organisations build repeatable, maintainable and well-documented technology platforms.">
+  <meta property="og:url" content="https://avazel.co.uk/">
+  <meta property="og:site_name" content="Avazel">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "@id": "https://avazel.co.uk/#organization",
+    "name": "Avazel",
+    "legalName": "Avazel Ltd",
+    "url": "https://avazel.co.uk/",
+    "email": "contact@avazel.co.uk",
+    "identifier": {
+      "@type": "PropertyValue",
+      "propertyID": "Companies House",
+      "value": "16871520"
+    },
+    "description": "Avazel is an independent UK consultancy providing DevOps, infrastructure automation, infrastructure-as-code and platform engineering consultancy. Founded and operated by an experienced UK infrastructure and automation consultant.",
+    "areaServed": {
+      "@type": "Country",
+      "name": "United Kingdom"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressRegion": "Hampshire",
+      "addressCountry": "GB"
+    },
+    "knowsAbout": [
+      "Infrastructure automation",
+      "Infrastructure as code",
+      "Terraform",
+      "Ansible",
+      "GitLab CI",
+      "Packer",
+      "Kubernetes",
+      "GitOps",
+      "VMware vSphere",
+      "VMware Aria Automation",
+      "VMware Aria Orchestrator",
+      "Linux",
+      "Windows Server",
+      "CI/CD",
+      "Platform engineering",
+      "Technical documentation"
+    ],
+    "makesOffer": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Infrastructure automation",
+          "description": "Reducing manual provisioning and configuration by automating infrastructure processes end to end."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Infrastructure as code",
+          "description": "Terraform, Ansible and repeatable environment delivery — versioned, reviewable and reproducible infrastructure."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "CI/CD and platform engineering",
+          "description": "GitLab CI, Packer, Kubernetes and deployment workflows that make building and releasing reliable and repeatable."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Technical documentation",
+          "description": "Operational guides, architecture documentation and support handover so platforms can be run without their original builders."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What services does Avazel provide?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Avazel provides infrastructure automation, infrastructure as code (Terraform and Ansible), CI/CD and platform engineering, and technical documentation services to UK organisations."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which technologies does Avazel specialise in?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Core technologies are Terraform, Ansible, GitLab CI and Packer; Linux and Windows infrastructure; VMware vSphere, Aria Automation and Orchestrator; and Kubernetes with GitOps workflows."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Avazel work remotely?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Avazel is based in Hampshire, UK and works with clients remotely across the UK. Hybrid engagements with on-site days are also available."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Avazel accept contract engagements?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Avazel accepts contract engagements, fixed-scope project work and shorter advisory engagements such as reviews and troubleshooting."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can Avazel work in confidential environments?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Avazel has experience working with enterprise and security-conscious organisations and treats client confidentiality as standard practice. Public materials never identify individual clients, projects or sectors."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Avazel provide documentation and handover?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Every engagement can include operational guides, architecture documentation and a structured handover so internal teams can support the platform independently."
+        }
+      }
+    ]
+  }
+  </script>
+
   <style>
     :root {
       --bg: #f7f7f5;
+      --bg-alt: #ffffff;
       --fg: #1a1a1a;
-      --muted: #6b6b6b;
+      --muted: #5c5c5c;
       --accent: #3b6ea5;
+      --accent-contrast: #ffffff;
       --rule: #e3e3df;
+      --card: #ffffff;
+      --card-border: #e6e6e2;
     }
     @media (prefers-color-scheme: dark) {
       :root {
         --bg: #12141a;
+        --bg-alt: #171a21;
         --fg: #e8e8e4;
-        --muted: #9a9aa2;
+        --muted: #a5a5ad;
         --accent: #7fa8d9;
+        --accent-contrast: #10131a;
         --rule: #23262f;
+        --card: #1a1d25;
+        --card-border: #262a34;
       }
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       background: var(--bg);
       color: var(--fg);
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-      min-height: 100svh;
-      display: grid;
-      place-items: center;
-      line-height: 1.6;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
     }
-    main {
-      max-width: 40rem;
-      padding: 2rem;
-      text-align: center;
+    a { color: var(--accent); }
+    .wrap {
+      max-width: 66rem;
+      margin: 0 auto;
+      padding: 0 1.5rem;
     }
-    h1 {
-      font-size: clamp(2.5rem, 8vw, 4rem);
-      font-weight: 650;
+
+    /* Header */
+    header.site {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--rule);
+    }
+    header.site .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-top: 0.85rem;
+      padding-bottom: 0.85rem;
+    }
+    .brand {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--fg);
+      text-decoration: none;
+    }
+    .brand span { color: var(--accent); }
+    nav.primary { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
+    nav.primary a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+    nav.primary a:hover { color: var(--fg); }
+    nav.primary a.btn, nav.primary a.btn:hover { color: var(--accent-contrast); }
+    .btn {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--accent-contrast);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.55rem 1.1rem;
+      border-radius: 0.5rem;
+      border: 0;
+      font-size: 0.95rem;
+      cursor: pointer;
+    }
+    .btn:hover { filter: brightness(1.08); }
+    .btn.ghost {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+    }
+    @media (max-width: 640px) {
+      nav.primary a:not(.btn) { display: none; }
+    }
+
+    /* Hero */
+    .hero { padding: 5rem 0 4rem; }
+    .hero h1 {
+      font-size: clamp(1.9rem, 4.5vw, 2.9rem);
+      font-weight: 750;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      max-width: 46rem;
+    }
+    .hero p.lede {
+      margin-top: 1.25rem;
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 44rem;
+    }
+    .hero .meta {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .chip {
+      font-size: 0.85rem;
+      color: var(--muted);
+      border: 1px solid var(--rule);
+      background: var(--bg-alt);
+      border-radius: 999px;
+      padding: 0.25rem 0.8rem;
+      white-space: nowrap;
+    }
+    .hero .cta { margin-top: 2rem; display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+    /* Sections */
+    section { padding: 3.5rem 0; border-top: 1px solid var(--rule); }
+    .kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    section h2 {
+      margin-top: 0.4rem;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 720;
       letter-spacing: -0.02em;
     }
-    h1 span { color: var(--accent); }
-    p.tag {
-      margin-top: 0.75rem;
-      font-size: 1.125rem;
+    section > .wrap > p.intro {
+      margin-top: 0.9rem;
       color: var(--muted);
+      max-width: 44rem;
     }
-    hr {
-      border: 0;
+
+    .grid {
+      margin-top: 2rem;
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 0.75rem;
+      padding: 1.4rem;
+    }
+    .card h3 { font-size: 1.08rem; font-weight: 700; letter-spacing: -0.01em; }
+    .card p { margin-top: 0.5rem; color: var(--muted); font-size: 0.95rem; }
+
+    ul.plain {
+      margin-top: 1.5rem;
+      list-style: none;
+      display: grid;
+      gap: 0.6rem;
+      grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    }
+    ul.plain li {
+      padding-left: 1.4rem;
+      position: relative;
+      color: var(--fg);
+    }
+    ul.plain li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.62em;
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 2px;
+      background: var(--accent);
+    }
+    ul.plain li small { display: block; color: var(--muted); }
+
+    blockquote.principle {
+      margin-top: 2rem;
+      border-left: 3px solid var(--accent);
+      padding: 0.35rem 0 0.35rem 1.25rem;
+      color: var(--muted);
+      max-width: 44rem;
+      font-style: italic;
+    }
+
+    /* FAQ */
+    .faq { margin-top: 1.75rem; max-width: 48rem; }
+    .faq details {
+      border-bottom: 1px solid var(--rule);
+      padding: 0.9rem 0;
+    }
+    .faq summary {
+      cursor: pointer;
+      font-weight: 650;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after { content: "+"; color: var(--accent); font-weight: 700; font-size: 1.2rem; }
+    .faq details[open] summary::after { content: "–"; }
+    .faq details p { margin-top: 0.6rem; color: var(--muted); }
+
+    /* Contact */
+    .contact-grid {
+      margin-top: 2rem;
+      display: grid;
+      gap: 1.5rem 2.5rem;
+      grid-template-columns: 1fr 1fr;
+      max-width: 48rem;
+    }
+    @media (max-width: 760px) { .contact-grid { grid-template-columns: 1fr; } }
+    .contact-grid dt { font-weight: 700; margin-top: 1.1rem; font-size: 0.95rem; }
+    .contact-grid dt:first-child { margin-top: 0; }
+    .contact-grid dd { color: var(--muted); font-size: 0.95rem; }
+
+    /* Footer */
+    footer.site {
       border-top: 1px solid var(--rule);
-      margin: 2.5rem auto;
-      width: 4rem;
-    }
-    p.note { color: var(--muted); font-size: 0.95rem; }
-    footer {
-      margin-top: 3rem;
-      font-size: 0.8rem;
+      padding: 2.5rem 0 3rem;
       color: var(--muted);
-      opacity: 0.8;
+      font-size: 0.88rem;
     }
+    footer.site .cols {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+    footer.site p { max-width: 40rem; }
+    footer.site a { color: var(--muted); }
+    footer.site a:hover { color: var(--fg); }
   </style>
 </head>
 <body>
-  <main>
-    <!-- EDIT ME: this is your public landing page at https://avazel.co.uk -->
-    <h1>Avazel<span>.</span></h1>
-    <p class="tag">Personal projects &amp; self-hosted services.</p>
-    <hr>
-    <p class="note">A proper site is on its way. In the meantime — everything here is
-    built on Kubernetes, delivered by GitOps, and rebuilt from a single command.</p>
-    <footer>k3s · ArgoCD · built &amp; shipped by Gitea Actions → Harbor</footer>
+
+  <header class="site">
+    <div class="wrap">
+      <a class="brand" href="#top">Avazel<span>.</span></a>
+      <nav class="primary" aria-label="Main">
+        <a href="#services">Services</a>
+        <a href="#expertise">Expertise</a>
+        <a href="#approach">Approach</a>
+        <a href="#about">About</a>
+        <a href="#faq">FAQ</a>
+        <a class="btn" href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- Hero / company introduction -->
+    <div class="hero">
+      <div class="wrap">
+        <h1>UK infrastructure, DevOps and automation consultancy.</h1>
+        <p class="lede">
+          Avazel helps organisations build repeatable, maintainable and well-documented
+          technology platforms — replacing manual infrastructure work with automation,
+          infrastructure as code and reliable delivery pipelines.
+        </p>
+        <div class="meta" aria-label="Key technologies and availability">
+          <span class="chip">Terraform</span>
+          <span class="chip">Ansible</span>
+          <span class="chip">GitLab CI</span>
+          <span class="chip">Packer</span>
+          <span class="chip">Kubernetes</span>
+          <span class="chip">VMware vSphere &amp; Aria</span>
+          <span class="chip">UK · remote &amp; hybrid</span>
+        </div>
+        <div class="cta">
+          <a class="btn" href="#contact">Get in touch</a>
+          <a class="btn ghost" href="#services">What we do</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Services -->
+    <section id="services">
+      <div class="wrap">
+        <p class="kicker">Services</p>
+        <h2>Four things, done properly</h2>
+        <p class="intro">
+          Avazel provides DevOps, infrastructure automation, infrastructure-as-code and
+          platform engineering consultancy in the UK. Work is deliberately focused on four areas.
+        </p>
+        <div class="grid">
+          <div class="card">
+            <h3>Infrastructure automation</h3>
+            <p>Reducing manual provisioning and configuration. We replace hand-built servers
+            and ticket-driven processes with automated, self-service workflows that are faster
+            and more consistent.</p>
+          </div>
+          <div class="card">
+            <h3>Infrastructure as code</h3>
+            <p>Terraform, Ansible and repeatable environment delivery. Infrastructure defined
+            in version control — reviewable, testable and reproducible across environments.</p>
+          </div>
+          <div class="card">
+            <h3>CI/CD &amp; platform engineering</h3>
+            <p>GitLab CI, Packer, Kubernetes and deployment workflows. Pipelines that build,
+            test and release reliably, and platforms that teams can actually operate.</p>
+          </div>
+          <div class="card">
+            <h3>Technical documentation</h3>
+            <p>Operational guides, architecture documentation and support handover — so your
+            platform can be run, supported and extended without its original builders.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What we help with (in place of case studies) -->
+    <section id="help">
+      <div class="wrap">
+        <p class="kicker">What we help with</p>
+        <h2>Typical engagements</h2>
+        <p class="intro">
+          Client confidentiality means we don't publish case studies. These are the problems
+          we're typically brought in to solve.
+        </p>
+        <ul class="plain">
+          <li>Replacing manual infrastructure processes with automation</li>
+          <li>Standardising Linux and Windows builds</li>
+          <li>Improving existing Terraform and Ansible implementations</li>
+          <li>Building or improving CI/CD pipelines</li>
+          <li>Making infrastructure platforms easier to operate and support</li>
+          <li>Producing clear operational and architecture documentation</li>
+          <li>Troubleshooting complex automation and integration issues</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Expertise -->
+    <section id="expertise">
+      <div class="wrap">
+        <p class="kicker">Expertise</p>
+        <h2>Technology coverage</h2>
+        <p class="intro">
+          Deep, current experience across the tools that run enterprise infrastructure —
+          not a logo wall of everything we've ever touched.
+        </p>
+        <ul class="plain">
+          <li>Terraform, Ansible, GitLab CI and Packer</li>
+          <li>Linux and Windows infrastructure</li>
+          <li>VMware vSphere, Aria Automation and Aria Orchestrator</li>
+          <li>Kubernetes and GitOps</li>
+          <li>Automation design, integration and troubleshooting</li>
+          <li>Documentation, standardisation and operational improvement</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Working approach -->
+    <section id="approach">
+      <div class="wrap">
+        <p class="kicker">Approach</p>
+        <h2>How we work</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Repeatable over heroic</h3>
+            <p>If a task was done by hand, it will need doing by hand again. We build
+            automation and code that produces the same result every time.</p>
+          </div>
+          <div class="card">
+            <h3>Maintainable by your team</h3>
+            <p>We use standard, widely-adopted tools and plain conventions, so the people
+            who inherit the platform can understand and change it.</p>
+          </div>
+          <div class="card">
+            <h3>Documented as standard</h3>
+            <p>Documentation isn't an optional extra at the end — operational guides and
+            architecture notes are part of the deliverable.</p>
+          </div>
+          <div class="card">
+            <h3>Confidential by default</h3>
+            <p>We work with enterprise and security-conscious organisations. Nothing about
+            a client engagement appears in public materials.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <div class="wrap">
+        <p class="kicker">About</p>
+        <h2>An independent UK consultancy</h2>
+        <p class="intro">
+          Avazel is an independent UK consultancy focused on infrastructure, automation and
+          platform engineering. It was founded and is operated by an experienced UK
+          infrastructure and automation consultant, with experience across complex
+          infrastructure estates in enterprise and security-conscious environments.
+          Engagements can be fully remote or hybrid.
+        </p>
+        <blockquote class="principle">
+          Client confidentiality is important to us. Public materials therefore describe
+          capabilities and experience without identifying individual clients, projects
+          or sectors.
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <div class="wrap">
+        <p class="kicker">FAQ</p>
+        <h2>Common questions</h2>
+        <div class="faq">
+          <details>
+            <summary>What services does Avazel provide?</summary>
+            <p>Infrastructure automation, infrastructure as code (Terraform and Ansible),
+            CI/CD and platform engineering, and technical documentation — for UK organisations,
+            remotely or hybrid.</p>
+          </details>
+          <details>
+            <summary>Which technologies does Avazel specialise in?</summary>
+            <p>Terraform, Ansible, GitLab CI and Packer; Linux and Windows infrastructure;
+            VMware vSphere, Aria Automation and Orchestrator; and Kubernetes with GitOps
+            workflows.</p>
+          </details>
+          <details>
+            <summary>Does Avazel work remotely?</summary>
+            <p>Yes. We're based in Hampshire, UK and work remotely with clients across the UK.
+            Hybrid engagements with regular on-site days are also available.</p>
+          </details>
+          <details>
+            <summary>Does Avazel accept contract engagements?</summary>
+            <p>Yes. We take on contract engagements, fixed-scope project work, and shorter
+            advisory engagements such as implementation reviews and troubleshooting.</p>
+          </details>
+          <details>
+            <summary>Can Avazel work in confidential environments?</summary>
+            <p>Yes. We have experience with enterprise and security-conscious organisations
+            and treat confidentiality as standard practice — public materials never identify
+            clients, projects or sectors.</p>
+          </details>
+          <details>
+            <summary>Does Avazel provide documentation and handover?</summary>
+            <p>Yes. Engagements can include operational guides, architecture documentation
+            and a structured handover, so your team can support the platform independently.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="wrap">
+        <p class="kicker">Contact</p>
+        <h2>Start a conversation</h2>
+        <p class="intro">
+          Tell us briefly what you're trying to achieve — a short intro call is usually the
+          quickest way to work out whether we can help.
+        </p>
+        <div class="contact-grid">
+          <dl>
+            <dt>Email</dt>
+            <dd><a href="mailto:contact@avazel.co.uk">contact@avazel.co.uk</a></dd>
+            <dt>Location</dt>
+            <dd>Hampshire, UK — working remotely across the UK, with hybrid on-site available.</dd>
+          </dl>
+          <dl>
+            <dt>Engagements</dt>
+            <dd>Contract engagements, fixed-scope projects, and shorter advisory work such as
+            reviews and troubleshooting.</dd>
+          </dl>
+        </div>
+        <div class="cta" style="margin-top: 2rem;">
+          <a class="btn" href="mailto:contact@avazel.co.uk">Email contact@avazel.co.uk</a>
+        </div>
+      </div>
+    </section>
+
   </main>
+
+  <footer class="site">
+    <div class="wrap cols">
+      <p>
+        <strong>Avazel</strong> — independent UK infrastructure, DevOps and automation
+        consultancy. Based in Hampshire, UK; remote and hybrid engagements.<br>
+        Avazel Ltd is registered in England &amp; Wales, company number 16871520.
+      </p>
+      <p>
+        <a href="mailto:contact@avazel.co.uk">contact@avazel.co.uk</a><br>
+        This site sets no cookies and collects no personal data.
+      </p>
+    </div>
+  </footer>
+
 </body>
 </html>
