@@ -32,6 +32,9 @@ jobs:
             exit 0
           fi
           echo "Building $IMAGE:$SHA (and :latest)…"
-          docker build -t "$IMAGE:$SHA" -t "$IMAGE:latest" .
+          # --pull so a rebuild re-fetches nginx:<tag> instead of reusing whatever
+          # copy the runner cached. Without it a pinned tag can keep resolving to a
+          # months-old local layer, which is how the base image went 16 months stale.
+          docker build --pull -t "$IMAGE:$SHA" -t "$IMAGE:latest" .
           docker push "$IMAGE:$SHA"
           docker push "$IMAGE:latest"
